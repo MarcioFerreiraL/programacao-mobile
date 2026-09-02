@@ -1,2 +1,52 @@
+# Dependencies
+**/node_modules/
+node_modules/
 
+# Expo & React Native
+**/.expo/
+.expo/
+**/dist/
+**/web-build/
+**/expo-env.d.ts
+
+# Native builds & outputs
+**/android/
+**/ios/
+**/.kotlin/
+*.apk
+*.aab
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Editors & IDEs
 .idea/
+**/.idea/
+.vscode/
+**/.vscode/
+.claude/
+**/.claude/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Environment & local secrets
+.env
+.env.*
+!.env.example
+
+# Logs & Caches
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+.metro-health-check*
+.cache/
+
+# OS metadata
+.DS_Store
+Thumbs.db
