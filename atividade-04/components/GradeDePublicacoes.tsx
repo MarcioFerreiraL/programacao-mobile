@@ -2,40 +2,30 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 interface GradeDePublicacoesProps {
-  publicacoes: string[]; // Cores ou imagens dos tamanhos/combinações de açaí
+  publicacoes: (string | number)[];
 }
 
 export default function GradeDePublicacoes({ publicacoes }: GradeDePublicacoesProps) {
-  const itensFantasmas = (3 - (publicacoes.length % 3)) % 3;
-  const itemsComFantasmas = [...publicacoes, ...Array(itensFantasmas).fill(null)];
-
   return (
-    <View className="flex-row flex-wrap justify-between w-full">
-      {itemsComFantasmas.map((item, index) => {
-        if (item === null) {
-          return (
-            <View 
-              key={`dummy-${index}`} 
-              className="w-[32%] aspect-square mb-2 bg-transparent" 
-            />
-          );
-        }
-
+    <View className="flex-row flex-wrap gap-2 w-full">
+      {publicacoes.map((item, index) => {
+        const isColor = typeof item === 'string' && (item.startsWith('#') || item.startsWith('rgb'));
+        
         return (
           <View
             key={index}
-            style={{ backgroundColor: item }}
-            className="w-[32%] aspect-square rounded-2xl mb-2 items-center justify-center border border-black/5 shadow-sm overflow-hidden"
+            style={isColor ? { backgroundColor: item } : undefined}
+            className={`w-[31%] aspect-square items-center justify-center rounded-lg shadow-sm mb-2 ${
+              !isColor ? 'bg-blue-100 border border-blue-200' : ''
+            }`}
           >
-            {/* Overlay escuro com o nome do combo/copo */}
-            <View className="bg-black/30 w-full h-full items-center justify-center p-1">
-              <Text className="text-white font-extrabold text-xs text-center shadow-sm">
-                Copo #{index + 1}
-              </Text>
-              <Text className="text-purple-200 text-[10px] font-medium">
-                Monte o seu
-              </Text>
-            </View>
+            <Text 
+              className={`font-bold text-xs ${
+                isColor ? 'text-white' : 'text-blue-900'
+              }`}
+            >
+              {typeof item === 'number' ? `${item}` : isColor ? `#${index + 1}` : item}
+            </Text>
           </View>
         );
       })}

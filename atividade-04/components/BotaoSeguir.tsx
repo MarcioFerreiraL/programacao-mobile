@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text, View } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 
 interface BotaoSeguirProps {
   onToggleState?: (isFollowing: boolean) => void;
@@ -7,11 +7,11 @@ interface BotaoSeguirProps {
 }
 
 export default function BotaoSeguir({ onToggleState, fullWidth = false }: BotaoSeguirProps) {
-  const [favoritado, setFavoritado] = useState(false);
+  const [seguindo, setSeguindo] = useState(false);
 
   const handlePress = () => {
-    const nextState = !favoritado;
-    setFavoritado(nextState);
+    const nextState = !seguindo;
+    setSeguindo(nextState);
     if (onToggleState) {
       onToggleState(nextState);
     }
@@ -20,21 +20,21 @@ export default function BotaoSeguir({ onToggleState, fullWidth = false }: BotaoS
   return (
     <TouchableOpacity
       onPress={handlePress}
-      activeOpacity={0.8}
-      className={`py-3 px-6 rounded-2xl border items-center justify-center transition-all ${
+      activeOpacity={0.7}
+      className={`py-2.5 px-6 rounded-xl border items-center justify-center ${
         fullWidth ? "w-full" : ""
       } ${
-        favoritado 
-          ? "bg-purple-100 border-purple-300" 
-          : "bg-purple-700 border-purple-700 shadow-md"
+        seguindo
+          ? "bg-transparent border-blue-600"
+          : "bg-blue-600 border-blue-600 shadow-sm"
       }`}
     >
       <Text
-        className={`font-bold text-base ${
-          favoritado ? "text-purple-800" : "text-white"
+        className={`font-semibold text-base ${
+          seguindo ? "text-blue-600" : "text-white"
         }`}
       >
-        {favoritado ? "❤️ Favoritado" : "🤍 Favoritar Combo"}
+        {seguindo ? "Seguindo" : "Seguir"}
       </Text>
     </TouchableOpacity>
   );

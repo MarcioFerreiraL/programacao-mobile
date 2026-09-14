@@ -11,10 +11,10 @@ export default function ListaDeChips({ chips }: ListaDeChipsProps) {
       {chips.map((chip, index) => (
         <View 
           key={index} 
-          className="bg-purple-50 border border-purple-200 px-3.5 py-2 rounded-full shadow-sm"
+          className="bg-blue-50 border border-blue-200 px-3.5 py-1.5 rounded-full shadow-sm"
         >
-          <Text className="text-purple-900 text-sm font-semibold">
-            ✨ {chip}
+          <Text className="text-blue-900 text-sm font-medium">
+            {chip}
           </Text>
         </View>
       ))}
